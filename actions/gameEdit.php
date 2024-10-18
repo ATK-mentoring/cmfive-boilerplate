@@ -44,6 +44,8 @@ function gameEdit_POST(Web $w) {
         $date_string = date_format( new DateTime(), 'ddmmYYYYHHii');
         $game->id_hash = hash('sha256', $game->name . $date_string);
     }
+
+    $game->user_id = AuthService::getInstance($w)->user()->id;
     
     $game->insertOrUpdate();
     $w->msg('game saved. Key = ' . $game->id_hash, '/leaderboard-public/gameView/' . $game->id_hash);

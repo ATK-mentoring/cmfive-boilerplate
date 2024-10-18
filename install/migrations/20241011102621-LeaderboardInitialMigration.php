@@ -18,6 +18,7 @@ class LeaderboardInitialMigration extends CmfiveMigration
             ])->addColumn($column)
             ->addStringColumn('name')
             ->addStringColumn('id_hash')
+            ->addIdColumn('user_id')
             ->addCmfiveParameters()
             ->create();
         }

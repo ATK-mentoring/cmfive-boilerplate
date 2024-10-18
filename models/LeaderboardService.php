@@ -5,6 +5,14 @@
  */
 class LeaderboardService extends DbService {
 
+    function getAllGames() {
+        return $this->getObjects('LeaderboardGame');
+    }
+
+    function getGamesForUserId($user_id) {
+        return $this->getObjects('LeaderboardGame', ['user_id' => $user_id]);
+    }
+
     function getGameForId ($game_id) {
         return $this->getObject('LeaderboardGame', $game_id);
     }
@@ -88,9 +96,17 @@ class LeaderboardService extends DbService {
         $nav = $prenav ? $prenav : [];
         if (AuthService::getInstance($w)->loggedIn()) {
             $w->menuLink("leaderboard/gameEdit", "New Game", $nav);
+            $w->menuLink("leaderboard/listGames", "List Games", $nav);
             // $w->menuLink("form", "Forms", $nav);
         }
 
         return $nav;
     }
+
+    // public function navList(): array
+    // {
+    //     return [
+    //         new MenuLinkStruct("New Game", "leaderboard/gameEdit")
+    //     ];
+    // }
 }
