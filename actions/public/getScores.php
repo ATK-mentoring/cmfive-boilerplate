@@ -22,8 +22,8 @@ function getScores_ALL(Web $w) {
     $results = [];
     foreach($scores as $score) {
         $results[] = [
-            $score->player_name,
-            $score->player_score
+            "name" => $score->player_name,
+            "score" => $score->player_score
         ];
     }
     $w->setLayout(null);
